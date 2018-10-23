@@ -18,7 +18,7 @@ class Config:
 class TestingConfig(Config):
     TESTING = True
     DATABASE = 'tw_test'
-    TEST_DATABASE_URL = '{}+{}://{}:{}@{}:{}/{}?charset=utf8'.format(
+    TEST_DATABASE_URL = '{}+{}://{}:{}@{}:{}/{}?charset=utf8mb4'.format(
         Config.DIALECT, Config.DRIVER, Config.USERNAME, Config.PASSWORD, Config.HOST, Config.PORT, DATABASE
     )
 

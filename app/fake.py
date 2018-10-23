@@ -1,25 +1,16 @@
-"""
-Description: Dump data to db
-Author: Zhaohong Lyu
-Last Modified: 2018/10/22
-"""
-
 from faker import Faker
 from random import randint
-from models import Tweet
+from app.db_models import Tweet
 from sqlalchemy.exc import IntegrityError
-from config import config
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from db_connector import Session
-from geoalchemy2 import Geometry
+from app.config import config
+from app.db_manager import Manager
 
 
-session = Session()
-print(session)
+# session = Session()
+# print(session)
+# BUG  to-do class fake
 
-
-def tweet(count=1):
+def tweet(session, count=1):
     fake = Faker()
     # db.session.rollback()
     i = 0
@@ -38,6 +29,10 @@ def tweet(count=1):
 
 
 if __name__ == '__main__':
-    tweet()
+    manager = Manager()
+    session = manager.Session()
+    # print(session)
+
+    tweet(session, 1)
     print('-- DONE --')
 
