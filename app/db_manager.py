@@ -4,7 +4,7 @@ from app.config import config
 from sqlalchemy.ext.declarative import declarative_base
 
 
-def get_base():
+def _init_base():
     """
     This is a base wrapper
     :return: base object
@@ -13,7 +13,7 @@ def get_base():
     return Base
 
 
-def get_engine():
+def _init_engine():
     """
     This is a create_engine wrapper
     :return: engine object
@@ -22,7 +22,7 @@ def get_engine():
     return engine
 
 
-def get_session():
+def _init_session():
     """
     This is a sessionmaker wrapper
     :return: engine object
@@ -38,9 +38,9 @@ class Manager(object):
     :return: engine object
     """
 
-    engine = get_engine()
-    Session = get_session()
-    Base = get_base()
+    engine = _init_engine()
+    Session = _init_session()
+    Base = _init_base()
 
     def __init__(self):
         Manager.engine.connect()

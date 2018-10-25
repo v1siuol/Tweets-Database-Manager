@@ -1,8 +1,3 @@
-"""
-Description: config setup
-Author: Zhaohong Lyu
-Last Modified: 2018/10/22
-"""
 import os
 
 

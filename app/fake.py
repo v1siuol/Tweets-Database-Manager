@@ -1,38 +1,39 @@
+import app
 from faker import Faker
-from random import randint
 from app.db_models import Tweet
 from sqlalchemy.exc import IntegrityError
 from app.config import config
 from app.db_manager import Manager
 
 
-# session = Session()
-# print(session)
-# BUG  to-do class fake
+class Fake(object):
 
-def tweet(session, count=1):
-    fake = Faker()
-    # db.session.rollback()
-    i = 0
-    while i < count:
-        t = Tweet(user_name=fake.name(),
-                  #  coordinate='POINT(1 1)',
-                  tweet=fake.text(),
-                  sentiment=1,
-                  )
-        session.add(t)
-        try:
-            session.commit()
-            i += 1
-        except IntegrityError:
-            session.rollback()
+    # session = Manager.Session()
+    def __init__(self):
+        manager = Manager()
+        self.session = manager.Session()
+
+    def tweet(self, count=1):
+        fake = Faker()
+        i = 0
+        while i < count:
+            t = Tweet(user_name=fake.name(),
+                      latitude=1.111111,
+                      longitude=-2.222222,
+                      tweet=fake.text(),
+                      sentiment=2,
+                      )
+            self.session.add(t)
+            try:
+                self.session.commit()
+                i += 1
+            except IntegrityError:
+                self.session.rollback()
 
 
 if __name__ == '__main__':
-    manager = Manager()
-    session = manager.Session()
-    # print(session)
+    generator = Fake()
+    generator.tweet(5)
 
-    tweet(session, 1)
     print('-- DONE --')
 
