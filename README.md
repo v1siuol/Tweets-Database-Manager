@@ -18,6 +18,9 @@ pip install -r requirements.txt
 
 
 ## Change Log
+### v0.0.3.1 (2018-10-27)
+- [A] Examine if json files valid 
+
 ### v0.0.2 (2018-10-24)
 - [M] Refactor models
 
